@@ -34,6 +34,14 @@ public class PhoneBook {
 
     }
 
+    public String findByName(String name){
+        return null;
+    }
+
+    public void printAllNames (){
+
+    }
+
     public int getSize(){
         return book.size();
     }

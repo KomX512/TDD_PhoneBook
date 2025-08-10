@@ -49,6 +49,23 @@ public class PhoneBookTest {
         Assertions.assertEquals(expected, testBook.findByNumber(searchParam));
     }
 
+    public static Stream <Arguments> findByNameTest () {
+        return Stream.of(
+                Arguments.of("ИИИГОРЬ!", null),
+                Arguments.of("Василий", "2223312"),
+                Arguments.of("Петр", "123456"),
+                Arguments.of("Колбасный", "234-654"),
+                Arguments.of("Кварц-15", "150015")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    void findByNameTest(String searchParam, String expected){
+        fillBook(testBook);
+        Assertions.assertEquals(expected, testBook.findByNumber(searchParam));
+    }
+
     private void fillBook(PhoneBook testBook) {
         String[] names = {"Василий", "Петр", "Колбасный", "Кварц-15"};
         String[] numbers = {"2223312", "123456", "234-654", "150015"};
