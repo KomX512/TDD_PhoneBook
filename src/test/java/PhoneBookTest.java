@@ -34,6 +34,7 @@ public class PhoneBookTest {
 
     public static Stream <Arguments> findByNumberTest () {
         return Stream.of(
+                Arguments.of("999999", null),
                 Arguments.of("2223312", "Василий"),
                 Arguments.of("123456", "Петр"),
                 Arguments.of("234-654", "Колбасный"),
@@ -44,9 +45,8 @@ public class PhoneBookTest {
     @ParameterizedTest
     @MethodSource
     void findByNumberTest(String searchParam, String expected){
-
         fillBook(testBook);
-        Assertions.assertEquals(expected, searchParam);
+        Assertions.assertEquals(expected, testBook.findByNumber(searchParam));
     }
 
     private void fillBook(PhoneBook testBook) {
