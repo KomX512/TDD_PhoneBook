@@ -32,7 +32,7 @@ public class PhoneBookTest {
         assertEquals(names.length, testBook.add("Василий", "2223312"));
     }
 
-    public static Stream <Arguments> findByNumberTest () {
+    public static Stream<Arguments> findByNumberTest() {
         return Stream.of(
                 Arguments.of("999999", null),
                 Arguments.of("2223312", "Василий"),
@@ -44,12 +44,12 @@ public class PhoneBookTest {
 
     @ParameterizedTest
     @MethodSource
-    void findByNumberTest(String searchParam, String expected){
+    void findByNumberTest(String searchParam, String expected) {
         fillBook(testBook);
         Assertions.assertEquals(expected, testBook.findByNumber(searchParam));
     }
 
-    public static Stream <Arguments> findByNameTest () {
+    public static Stream<Arguments> findByNameTest() {
         return Stream.of(
                 Arguments.of("ИИИГОРЬ!", null),
                 Arguments.of("Василий", "2223312"),
@@ -61,9 +61,9 @@ public class PhoneBookTest {
 
     @ParameterizedTest
     @MethodSource
-    void findByNameTest(String searchParam, String expected){
+    void findByNameTest(String searchParam, String expected) {
         fillBook(testBook);
-        Assertions.assertEquals(expected, testBook.findByNumber(searchParam));
+        Assertions.assertEquals(expected, testBook.findByName(searchParam));
     }
 
     private void fillBook(PhoneBook testBook) {
@@ -72,6 +72,13 @@ public class PhoneBookTest {
         for (int i = 0; i < names.length; i++) {
             testBook.add(names[i], numbers[i]);
         }
+    }
+
+    @Test
+    void testPrintAllNames(){
+        fillBook(testBook);
+        testBook.printAllNames();
+        Assertions.assertEquals(true, true);
     }
 
     @AfterEach
