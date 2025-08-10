@@ -14,7 +14,14 @@ public class PhoneBook {
             System.out.println("Имя " + name + " уже есть в книге");
         }
 
-        return book.size();
+        return getSize();
     }
 
+    public String findByNumber(String number){
+        return null;
+    }
+
+    public int getSize(){
+        return book.size();
+    }
 }

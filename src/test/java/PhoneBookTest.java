@@ -1,8 +1,9 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,6 +30,31 @@ public class PhoneBookTest {
         }
         System.out.println("Добавляем повторную запись Василий");
         assertEquals(names.length, testBook.add("Василий", "2223312"));
+    }
+
+    public static Stream <Arguments> findByNumberTest () {
+        return Stream.of(
+                Arguments.of("2223312", "Василий"),
+                Arguments.of("123456", "Петр"),
+                Arguments.of("234-654", "Колбасный"),
+                Arguments.of("150015", "Кварц-15")
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    void findByNumberTest(String searchParam, String expected){
+
+        fillBook(testBook);
+        Assertions.assertEquals(expected, searchParam);
+    }
+
+    private void fillBook(PhoneBook testBook) {
+        String[] names = {"Василий", "Петр", "Колбасный", "Кварц-15"};
+        String[] numbers = {"2223312", "123456", "234-654", "150015"};
+        for (int i = 0; i < names.length; i++) {
+            testBook.add(names[i], numbers[i]);
+        }
     }
 
     @AfterEach
