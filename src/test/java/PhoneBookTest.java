@@ -75,7 +75,7 @@ public class PhoneBookTest {
     }
 
     @Test
-    void testPrintAllNames(){
+    void testPrintAllNames() {
         fillBook(testBook);
         testBook.printAllNames();
         Assertions.assertEquals(true, true);
