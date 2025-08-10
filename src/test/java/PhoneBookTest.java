@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PhoneBookTest {
-    private PhoneBook testBook;
+    private static PhoneBook testBook;
 
     @BeforeAll
     static void startTest() {
@@ -15,7 +15,7 @@ public class PhoneBookTest {
     }
 
     @BeforeEach
-    void addressInit() {
+    void bookInit() {
         testBook = new PhoneBook();
     }
 
@@ -25,8 +25,10 @@ public class PhoneBookTest {
         String[] numbers = {"2223312", "123456", "234-654", "150015"};
         for (int i = 0; i < names.length; i++) {
             System.out.println("Добавляем " + names[i] + " " + numbers[i]);
-            assertEquals(i+1, testBook.add(names[i], numbers[i]));
+            assertEquals(i + 1, testBook.add(names[i], numbers[i]));
         }
+        System.out.println("Добавляем повторную запись Василий");
+        assertEquals(names.length, testBook.add("Василий", "2223312"));
     }
 
     @AfterEach
